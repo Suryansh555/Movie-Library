@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MovieInfo</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" href="cssFile.css">
+  </head>
+  <body style="background-color: #0A0A0A;">
+    <body style="background-color: #0A0A0A;">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="home.html">Movie Library</a>
+          </div>
+          <div style="float: right;">
+            <p>Hello
+              <span class="text-primary">
+              <script>
+                var emailIdVal = sessionStorage.getItem("email");
+                // console.log(emailIdVal);
+                // document.getElementById("emailId").innerHTML = emailIdVal;
+                document.write(emailIdVal)
+              </script>
+              </span>
+              ! 
+              <span style="padding-left: 50px;" id="logout">Log Out</span>
+            </p>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container">
+      <div id="movie" class="well"  style="padding-top: 50px"; ></div>
+    </div>
+
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    getMovie();
+  </script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8HjB-8Xz011wTZh3zZxhDbu1OfUfh-lQ",
+      authDomain: "authentication-7bbab.firebaseapp.com",
+      databaseURL: "https://authentication-7bbab-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "authentication-7bbab",
+      storageBucket: "authentication-7bbab.appspot.com",
+      messagingSenderId: "1086066077999",
+      appId: "1:1086066077999:web:f35a4d428b72c170d931da",
+      measurementId: "G-5MZ8W8TFSM"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+   
+  const user = auth.currentUser;
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+    } else {
+      // User is signed out
+    }
+  });
+  
+  logout.addEventListener('click',(e)=>{
+  
+     signOut(auth).then(() => {
+       // Sign-out successful.
+       console.log('user loged out');
+       window.location = 'index.html' ; 
+     }).catch((error) => {
+       // An error happened.
+       const errorCode = error.code;
+       const errorMessage = error.message;
+  
+          alert(errorMessage);
+     });
+  
+  });
+  
+  </script>
+  </body>
+</html>
